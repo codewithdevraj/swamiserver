@@ -11,22 +11,13 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  'https://swamiji.codewithdevraj.live',
-  'https://swamiji-client.netlify.app/auth',
-  'http://localhost:8254', // For local development
-];
-
-// Configure CORS dynamically
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow request
-    } else {
-      callback(new Error('Not allowed by CORS')); // Block request
-    }
-  },
-  credentials: true, // Allow cookies and other credentials
+  origin: "https://swamiji-client.netlify.app",
+  credentials: true,
+  optionSuccessStatus: 200,
+  method: "GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH, CONNECT, TRACE, PURGE",
+  allowedHeadaers:
+    "Content-Type, Accept, Origin, X-Requested-with, Authorization",
 };
 
 app.use(cors(corsOptions));
