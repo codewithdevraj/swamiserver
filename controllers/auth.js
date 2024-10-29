@@ -36,16 +36,16 @@ const handleRegistration = async ( req, res ) => {
           httpOnly: true, // Prevent access from client-side JavaScript
           secure: true, // Ensure the cookie is sent over HTTPS only
           sameSite: "none", // Allow cross-site requests (important for CORS)
-          domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-          path: "/", // Make the cookie accessible to the entire app
+        //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
+        //   path: "/", // Make the cookie accessible to the entire app
         });
 
         res.cookie("sessionId", sessionId, {
           httpOnly: true,
           secure: true,
           sameSite: "none",
-          domain: "swamiserver.onrender.com",
-          path: "/",
+        //   domain: "swamiserver.onrender.com",
+        //   path: "/",
         });
         
         res.status( 201 ).json( { message: "user created successfully", user: newAuth.userId } );
@@ -79,16 +79,16 @@ const handlelogin = async ( req, res ) => {
           httpOnly: true, // Prevent access from client-side JavaScript
           secure: true, // Ensure the cookie is sent over HTTPS only
           sameSite: "none", // Allow cross-site requests (important for CORS)
-          domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-          path: "/", // Make the cookie accessible to the entire app
+        //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
+        //   path: "/", // Make the cookie accessible to the entire app
         });
 
         res.cookie("sessionId", sessionId, {
           httpOnly: true,
           secure: true,
           sameSite: "none",
-          domain: "swamiserver.onrender.com",
-          path: "/",
+        //   domain: "swamiserver.onrender.com",
+        //   path: "/",
         });
 
         res.status( 200 )
