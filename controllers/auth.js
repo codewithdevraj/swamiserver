@@ -26,21 +26,9 @@ const handleRegistration = async (req, res) => {
     const sessionId = generateSessionId(token); //generate session id
     await mapSessionIdWithUser(newAuth.userId, sessionId); //map session id with user
 
-    res.cookie("token", token, {
-        httpOnly: true, // Prevent access from client-side JavaScript
-        sameSite: "none", // Allow cross-site requests (important for CORS)
-        secure: true, // Ensure the cookie is sent over HTTPS only
-        domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-        path: "/", // Make the cookie accessible to the entire app
-    });
+    res.cookie("token", token);
 
-    res.cookie("sessionId", sessionId, {
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-        domain: "swamiserver.onrender.com",
-        path: "/",
-    });
+    res.cookie("sessionId", sessionId);
 
     res
       .status(201)
@@ -71,21 +59,9 @@ const handlelogin = async (req, res) => {
     const sessionId = generateSessionId(token); //generate session id
     await mapSessionIdWithUser(authExist.userId, sessionId); //map session id with user
 
-    res.cookie("token", token, {
-      httpOnly: true, // Prevent access from client-side JavaScript
-      sameSite: "none", // Allow cross-site requests (important for CORS)
-      secure: true, // Ensure the cookie is sent over HTTPS only
-      domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-      path: "/", // Make the cookie accessible to the entire app
-    });
+    res.cookie("token", token);
 
-    res.cookie("sessionId", sessionId, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-      domain: "swamiserver.onrender.com",
-      path: "/",
-    });
+    res.cookie("sessionId", sessionId);
 
     res
       .status(200)
