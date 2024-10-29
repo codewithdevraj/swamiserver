@@ -33,6 +33,7 @@ const handleRegistration = async (req, res) => {
   sameSite: 'none', // Allow cross-site cookies
   path: '/', // Make the cookie available across the entire site
   domain: 'codewithdevraj.live', // Apply to both subdomains (frontend & backend)
+    });
 
     res.cookie("sessionId", sessionId, {
         httpOnly: false, // Prevent access from JavaScript
