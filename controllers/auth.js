@@ -33,19 +33,19 @@ const handleRegistration = async ( req, res ) => {
         await mapSessionIdWithUser( newAuth.userId, sessionId ); //map session id with user
 
         res.cookie("token", token, {
-        //   httpOnly: true, // Prevent access from client-side JavaScript
-        //   secure: true, // Ensure the cookie is sent over HTTPS only
+          httpOnly: true, // Prevent access from client-side JavaScript
           sameSite: "none", // Allow cross-site requests (important for CORS)
-        //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-        //   path: "/", // Make the cookie accessible to the entire app
+          //   secure: true, // Ensure the cookie is sent over HTTPS only
+          //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
+          //   path: "/", // Make the cookie accessible to the entire app
         });
 
         res.cookie("sessionId", sessionId, {
-        //   httpOnly: true,
-        //   secure: true,
+          httpOnly: true,
           sameSite: "none",
-        //   domain: "swamiserver.onrender.com",
-        //   path: "/",
+          //   secure: true,
+          //   domain: "swamiserver.onrender.com",
+          //   path: "/",
         });
         
         res.status( 201 ).json( { message: "user created successfully", user: newAuth.userId } );
@@ -76,17 +76,17 @@ const handlelogin = async ( req, res ) => {
         await mapSessionIdWithUser(authExist.userId, sessionId); //map session id with user
 
         res.cookie("token", token, {
-        //   httpOnly: true, // Prevent access from client-side JavaScript
-        //   secure: true, // Ensure the cookie is sent over HTTPS only
+          httpOnly: true, // Prevent access from client-side JavaScript
           sameSite: "none", // Allow cross-site requests (important for CORS)
+        //   secure: true, // Ensure the cookie is sent over HTTPS only
         //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
         //   path: "/", // Make the cookie accessible to the entire app
         });
 
         res.cookie("sessionId", sessionId, {
-        //   httpOnly: true,
-        //   secure: true,
+          httpOnly: true,
           sameSite: "none",
+        //   secure: true,
         //   domain: "swamiserver.onrender.com",
         //   path: "/",
         });
