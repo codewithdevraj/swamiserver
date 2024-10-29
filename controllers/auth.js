@@ -28,19 +28,18 @@ const handleRegistration = async (req, res) => {
     
 
     res.cookie("token", token, {
-        // httpOnly: true, // Prevent access from client-side JavaScript
-        // sameSite: "lax", // Allow cross-site requests (important for CORS)
-        // secure: true, // Ensure the cookie is sent over HTTPS only
-        // domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-        // path: "/", // Make the cookie accessible to the entire app
-    });
+        httpOnly: false, // Prevent access from JavaScript
+  secure: true, // Ensure it works only over HTTPS (important for production)
+  sameSite: 'none', // Allow cross-site cookies
+  path: '/', // Make the cookie available across the entire site
+  domain: 'codewithdevraj.live', // Apply to both subdomains (frontend & backend)
 
     res.cookie("sessionId", sessionId, {
-        // httpOnly: true,
-        // sameSite: "lax",
-        // secure: true,
-        // domain: "swamiserver.onrender.com",
-        // path: "/",
+        httpOnly: false, // Prevent access from JavaScript
+  secure: true, // Ensure it works only over HTTPS (important for production)
+  sameSite: 'none', // Allow cross-site cookies
+  path: '/', // Make the cookie available across the entire site
+  domain: 'codewithdevraj.live', // Apply to both subdomains (frontend & backend)
     });
 
     res
@@ -73,19 +72,19 @@ const handlelogin = async (req, res) => {
     await mapSessionIdWithUser(authExist.userId, sessionId); //map session id with user
 
     res.cookie("token", token, {
-    //   httpOnly: true, // Prevent access from client-side JavaScript
-    //   sameSite: "lax", // Allow cross-site requests (important for CORS)
-    //   secure: true, // Ensure the cookie is sent over HTTPS only
-    //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-    //   path: "/", // Make the cookie accessible to the entire app
+    httpOnly: false, // Prevent access from JavaScript
+  secure: true, // Ensure it works only over HTTPS (important for production)
+  sameSite: 'none', // Allow cross-site cookies
+  path: '/', // Make the cookie available across the entire site
+  domain: 'codewithdevraj.live', // Apply to both subdomains (frontend & backend)
     });
 
     res.cookie("sessionId", sessionId, {
-    //   httpOnly: true,
-    //   sameSite: "lax",
-    //   secure: true,
-    //   domain: "swamiserver.onrender.com",
-    //   path: "/",
+    httpOnly: false, // Prevent access from JavaScript
+  secure: true, // Ensure it works only over HTTPS (important for production)
+  sameSite: 'none', // Allow cross-site cookies
+  path: '/', // Make the cookie available across the entire site
+  domain: 'codewithdevraj.live', // Apply to both subdomains (frontend & backend)
     });
 
     res
