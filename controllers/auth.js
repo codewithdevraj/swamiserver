@@ -2,7 +2,15 @@ const bcrypt = require( 'bcrypt' );
 const auths = require( '../models/auth' );
 
 //generate session id and token and verification
+const {
+    generateSessionId
+} = require( '../services/generatesession' );
 
+const {
+    generateToken
+} = require( '../services/generateToken' );
+
+const mapSessionIdWithUser = require( '../services/mapsession' );
 
 const handleRegistration = async ( req, res ) => {
     try {
@@ -20,9 +28,19 @@ const handleRegistration = async ( req, res ) => {
                 password: hashedPassword
             }
         );
-        //token and session id generation
-        //map the session in database
+        const token = generateToken( newAuth ); //generate token
+        const sessionId = generateSessionId( token ); //generate session id
+        await mapSessionIdWithUser( newAuth.userId, sessionId ); //map session id with user
 
+        res.cookie( "token", token, {
+            // httpOnly: true,
+            // sameSite: "strict",
+        } );
+        res.cookie( "sessionId", sessionId, {
+            // httpOnly: true,
+            // sameSite: "strict",
+        } );
+        
         res.status( 201 ).json( { message: "user created successfully", user: newAuth.userId } );
 
     } catch ( err ) {
@@ -44,13 +62,20 @@ const handlelogin = async ( req, res ) => {
         if ( !isValidPassword ) {
             return res.status( 400 ).json( { message: 'Invalid password' } );
         }
-        
 
 
-        //token generation
-        //sessionid generation
-        //mappingof session id
-        //cookies store fo token and session id
+        const token = generateToken(authExist); //generate token
+        const sessionId = generateSessionId(token); //generate session id
+        await mapSessionIdWithUser(authExist.userId, sessionId); //map session id with user
+
+        res.cookie("token", token, {
+          // httpOnly: true,
+          // sameSite: "strict",
+        });
+        res.cookie("sessionId", sessionId, {
+          // httpOnly: true,
+          // sameSite: "strict",
+        });
 
         res.status( 200 )
             .json( { message: 'user logged in successfully', user: authExist.userId } );

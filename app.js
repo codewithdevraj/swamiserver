@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: "*",
+  origin: `${process.env.CLIENT_URL}`,
   credentials: true,
   optionSuccessStatus: 200,
   method: "GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH, CONNECT, TRACE, PURGE",
