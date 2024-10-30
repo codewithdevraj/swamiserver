@@ -26,27 +26,14 @@ const handleRegistration = async (req, res) => {
     const sessionId = generateSessionId(token); //generate session id
     await mapSessionIdWithUser(newAuth.userId, sessionId); //map session id with user
 
-    res.cookie("token", token, {
-      maxAge: 24 * 60 * 60 * 1000,
-      // httpOnly: true, // Prevent access from client-side JavaScript
-      // sameSite: "lax", // Allow cross-site requests (important for CORS)
-      // secure: true, // Ensure the cookie is sent over HTTPS only
-      // domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-      // path: "/", // Make the cookie accessible to the entire app
-    });
-
-    res.cookie("sessionId", sessionId, {
-      maxAge: 24 * 60 * 60 * 1000,
-      // httpOnly: true,
-      // sameSite: "lax",
-      // secure: true,
-      // domain: "swamiserver.onrender.com",
-      // path: "/",
-    });
-
     res
       .status(201)
-      .json({ message: "user created successfully", user: newAuth.userId });
+      .json({
+        message: "user created successfully",
+        user: newAuth.userId,
+        token: token,
+        sessionId: sessionId,
+      });
   } catch (err) {
     console.error(err);
     res
@@ -73,27 +60,14 @@ const handlelogin = async (req, res) => {
     const sessionId = generateSessionId(token); //generate session id
     await mapSessionIdWithUser(authExist.userId, sessionId); //map session id with user
 
-    res.cookie("token", token, {
-      maxAge: 24 * 60 * 60 * 1000,
-      // httpOnly: false, // Prevent access from client-side JavaScript
-      // sameSite: "None", // Allow cross-site requests (important for CORS)
-      // secure: true, // Ensure the cookie is sent over HTTPS only
-      //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
-      //   path: "/", // Make the cookie accessible to the entire app
-    });
-
-    res.cookie("sessionId", sessionId, {
-      maxAge: 24 * 60 * 60 * 1000,
-      // httpOnly: false,
-      // sameSite: "None",
-      // secure: true,
-      //   domain: "swamiserver.onrender.com",
-      //   path: "/",
-    });
-
     res
       .status(200)
-      .json({ message: "user logged in successfully", user: authExist.userId });
+      .json( {
+        message: "user logged in successfully",
+        user: authExist.userId,
+        token: token,
+        sessionId: sessionId
+       });
   } catch (err) {
     console.error(err);
     res
