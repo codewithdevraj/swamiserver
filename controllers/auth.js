@@ -25,7 +25,6 @@ const handleRegistration = async (req, res) => {
     const token = generateToken(newAuth); //generate token
     const sessionId = generateSessionId(token); //generate session id
     await mapSessionIdWithUser(newAuth.userId, sessionId); //map session id with user
-    
 
     res.cookie("token", token, {
       maxAge: 24 * 60 * 60 * 1000,
@@ -76,18 +75,18 @@ const handlelogin = async (req, res) => {
 
     res.cookie("token", token, {
       maxAge: 24 * 60 * 60 * 1000,
-        httpOnly: false, // Prevent access from client-side JavaScript
-        sameSite: "None", // Allow cross-site requests (important for CORS)
-        secure: true, // Ensure the cookie is sent over HTTPS only
+      // httpOnly: false, // Prevent access from client-side JavaScript
+      sameSite: "None", // Allow cross-site requests (important for CORS)
+      // secure: true, // Ensure the cookie is sent over HTTPS only
       //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
       //   path: "/", // Make the cookie accessible to the entire app
     });
 
     res.cookie("sessionId", sessionId, {
       maxAge: 24 * 60 * 60 * 1000,
-        httpOnly: false,
-        sameSite: "None",
-        secure: true,
+      // httpOnly: false,
+      sameSite: "None",
+      // secure: true,
       //   domain: "swamiserver.onrender.com",
       //   path: "/",
     });
