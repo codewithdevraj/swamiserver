@@ -76,18 +76,18 @@ const handlelogin = async (req, res) => {
 
     res.cookie("token", token, {
       maxAge: 24 * 60 * 60 * 1000,
-      //   httpOnly: true, // Prevent access from client-side JavaScript
-      //   sameSite: "lax", // Allow cross-site requests (important for CORS)
-      //   secure: true, // Ensure the cookie is sent over HTTPS only
+         httpOnly: false, // Prevent access from client-side JavaScript
+         sameSite: "none", // Allow cross-site requests (important for CORS)
+         secure: true, // Ensure the cookie is sent over HTTPS only
       //   domain: "swamiserver.onrender.com", // Ensure it's tied to your server domain
       //   path: "/", // Make the cookie accessible to the entire app
     });
 
     res.cookie("sessionId", sessionId, {
       maxAge: 24 * 60 * 60 * 1000,
-      //   httpOnly: true,
-      //   sameSite: "lax",
-      //   secure: true,
+         httpOnly: false,
+         sameSite: "none",
+         secure: true,
       //   domain: "swamiserver.onrender.com",
       //   path: "/",
     });
